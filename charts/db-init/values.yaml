@@ -1,3 +1,10 @@
+nameOverride: ""
+fullnameOverride: ""
+
+commonLabels: {}
+
+commonAnnotations: {}
+
 image:
   registry: docker.io
   pullPolicy: IfNotPresent
