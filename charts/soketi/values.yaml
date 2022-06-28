@@ -1,0 +1,175 @@
+replicaCount: 1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  registry: quay.io
+  repository: soketi/soketi
+  pullPolicy: IfNotPresent
+  nodeVersion: "16"
+  distro: alpine
+  # tag: "0.33.0-16-alpine"
+
+# Soketi app configuration
+# Options interface https://github.com/soketi/soketi/blob/master/src/options.ts
+# Default values https://github.com/soketi/soketi/blob/master/src/server.ts#L30-L243
+config:
+  appManager:
+    driver: array
+    cache:
+      enabled: true
+      ttl: -1
+    array:
+      apps: []
+      # - id: app-id
+      #   key: app-key
+      #   secret: app-secret
+
+  # cache:
+  #   driver: memory
+  #   redis:
+  #     redisOptions: {}
+  #     clusterMode: false
+
+  # debug: false
+
+  # eventLimits:
+  #   maxChannelsAtOnce: 100
+
+  # channelLimits:
+  #   maxNameLength: 200
+  #   cacheTtl: 3600
+
+extraEnvVars: {}
+  # NODE_OPTIONS: --max-old-space-size=1000 --optimize-for-size
+
+# Multicast will enable settings for pods to support multicast.
+multicast:
+  enabled: false
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
+
+# Extra volumes to mount on the container.
+extraVolumeMounts: []
+# - name: some-folder
+#   mountPath: /some/path
+
+# Extra volumes to attach to the deployment.
+extraVolumes: []
+# - name: some-folder
+#   emptyDir: {}
+
+serviceMonitor:
+  enabled: false
+  scrapeInterval: 5s
+  scrapeTimeout: 3s
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+rbac:
+  create: true
+
+podAnnotations: {}
+
+podSecurityContext:
+  enabled: false
+  # fsGroup: 2000
+
+containerSecurityContext:
+  enabled: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+pdb:
+  enabled: false
+  minAvailable: 1
+  # maxUnavailable: 25%
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPU: 80
+  # targetMemory: 80
+
+podAffinityPreset: ""
+
+podAntiAffinityPreset: soft
+
+nodeAffinityPreset:
+  type: ""
+  key: ""
+  values: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+topologySpreadConstraints: []
+
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 2
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 1
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 1
+
+# In some cases, closing a Pod that has a lot of connections
+# will disconnect them, and stats would need some time to catch up with the disconnections,
+# so a bigger termination grace period would be suitable.
+terminationGracePeriodSeconds: 30
+
+service:
+  type: ClusterIP
+  port: 80
+
+networkWatcher:
+  enabled: false
+
+redis:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+ingress:
+  enabled: false
+  ingressClassName: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts: []
+  # - host: soketi.local
+  #   paths: []
+  tls: []
+  # - secretName: soketi-tls
+  #   hosts:
+  #     - soketi.local
