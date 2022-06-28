@@ -83,6 +83,20 @@ entries:
     version: 0.2.0
   db-init:
   - apiVersion: v2
+    created: "2022-06-28T00:42:50.018441989Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.13.0
+    description: Init script to create multiple databases and users for MySQL/MariaDB
+      and PostgreSQL
+    digest: fb1593bfda9aa9ca0c775068c4b6ddf62b2dec8129f63041eab25532ee8375fc
+    name: db-init
+    type: application
+    urls:
+    - https://github.com/thphuong/sunasteriskrnd-helm-charts/releases/download/db-init-1.0.0/db-init-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     created: "2022-04-22T03:04:38.56825809Z"
     dependencies:
     - name: common
@@ -158,6 +172,20 @@ entries:
   laravel-echo-server:
   - apiVersion: v2
     appVersion: 1.6.2
+    created: "2022-06-28T00:42:50.145523525Z"
+    dependencies:
+    - name: common
+      repository: https://sun-asterisk-research.github.io/helm-charts
+      version: 0.2.0
+    description: Laravel Echo server
+    digest: 4e8fcd925f88c445240f38c87661ca04e9824cb0167eb7e0fb914f6aa9a6e2a6
+    name: laravel-echo-server
+    type: application
+    urls:
+    - https://github.com/thphuong/sunasteriskrnd-helm-charts/releases/download/laravel-echo-server-3.0.0/laravel-echo-server-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
+    appVersion: 1.6.2
     created: "2022-03-07T21:27:30.466212809Z"
     dependencies:
     - name: common
@@ -171,6 +199,21 @@ entries:
     - https://github.com/sun-asterisk-research/helm-charts/releases/download/laravel-echo-server-2.1.1/laravel-echo-server-2.1.1.tgz
     version: 2.1.1
   metabase:
+  - apiVersion: v2
+    appVersion: v0.43.3
+    created: "2022-06-28T00:42:50.264405052Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.11.1
+    description: The simplest, fastest way to get business intelligence and analytics
+      to everyone in your company.
+    digest: ff0cf6cba0ea9e7aa5655e970eba80c020a6332f321d80e67455e47e20f7575f
+    name: metabase
+    type: application
+    urls:
+    - https://github.com/thphuong/sunasteriskrnd-helm-charts/releases/download/metabase-0.2.0/metabase-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     appVersion: v0.42.4
     created: "2022-04-24T11:47:31.621810832Z"
@@ -230,6 +273,20 @@ entries:
     urls:
     - https://github.com/sun-asterisk-research/helm-charts/releases/download/openedx-0.1.0/openedx-0.1.0.tgz
     version: 0.1.0
+  rbac:
+  - apiVersion: v2
+    created: "2022-06-28T00:42:50.382666279Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.11.3
+    description: Service account to enable access from automated systems
+    digest: f9ab46944374284c729a71cc82903881cbeed8b15ccb00722dcc83c9bfffeb0b
+    name: rbac
+    type: application
+    urls:
+    - https://github.com/thphuong/sunasteriskrnd-helm-charts/releases/download/rbac-1.0.0/rbac-1.0.0.tgz
+    version: 1.0.0
   redis-ha:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -294,4 +351,27 @@ entries:
     urls:
     - https://github.com/sun-asterisk-research/helm-charts/releases/download/service-account-1.0.0/service-account-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-24T11:47:31.735250648Z"
+  soketi:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-06-28T00:42:50.517998524Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.13.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.8.7
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.24
+    description: Just another simple, fast, and resilient open-source WebSockets server.
+    digest: f657f030e7958e7d9f8122b21a4f00f0711699c50825d22fd315b6552516f16e
+    name: soketi
+    type: application
+    urls:
+    - https://github.com/thphuong/sunasteriskrnd-helm-charts/releases/download/soketi-0.1.0/soketi-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-06-28T00:42:50.518107924Z"
